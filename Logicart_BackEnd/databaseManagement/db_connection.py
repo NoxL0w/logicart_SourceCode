@@ -5,7 +5,7 @@ db = mysql.connector.connect(
     host="localhost",
     user="root",
     password="",  # Default is blank
-    database="logicart_db"
+    database="logicart"
 )
 
 # Check if connected
