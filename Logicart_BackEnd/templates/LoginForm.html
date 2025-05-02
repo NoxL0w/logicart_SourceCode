@@ -2,11 +2,134 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Deal O' The Day</title>
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f0f0f0;
+    }
+    .header {
+      background: #000;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+    }
+    .logo {
+      background: #FFD700;
+      color: #000;
+      padding: 5px 10px;
+      font-weight: bold;
+    }
+    nav a {
+      margin: 0 10px;
+      color: #fff;
+      text-decoration: none;
+    }
+    .search-bar {
+      padding: 5px;
+    }
+    .login-btn {
+      background-color: #FFD700;
+      border: none;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+      margin: 5% auto;
+      padding: 0;
+      width: 50%;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .modal-inner {
+      padding: 20px;
+      background-color: #FFD700;
+    }
+
+    .close {
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #000;
+    }
+
+    .tab {
+      display: flex;
+      justify-content: stretch;
+    }
+
+    .tab button {
+      flex: 1;
+      padding: 12px;
+      background: #ddd;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .tab button.active {
+      background: #FFD700;
+      color: #000;
+      border-bottom: 4px solid #000;
+    }
+
+    .tabcontent {
+      display: none;
+      padding: 20px 0;
+    }
+
+    .tabcontent form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tabcontent form input[type="text"],
+    .tabcontent form input[type="password"] {
+      margin: 5px 0;
+      padding: 8px;
+      border: none;
+      border-radius: 4px;
+    }
+
+    .tabcontent form button {
+      margin-top: 10px;
+      padding: 10px;
+      background: #000;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    .remember-forgot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-  <header>
+
+  <div class="header">
     <div class="logo">Logo</div>
     <nav>
       <a href="#">Home</a>
@@ -14,32 +137,105 @@
       <a href="#">About</a>
       <a href="#">Contact</a>
     </nav>
-    <input type="text" class="search" placeholder="Search">
-  </header>
-
-  <h1 class="title">DEAL O' THE DAY</h1>
-
-  <div class="tab-buttons">
-    <button class="active">LOG IN</button>
-    <button>REGISTER</button>
-    <button>CREATE A BUSINESS</button>
+    <input type="text" placeholder="Search" class="search-bar">
+    <button id="loginBtn" class="login-btn">Login</button>
   </div>
 
-  <div class="login-box">
-    <form>
-      <label>Username</label>
-      <input type="text" name="username" required>
-
-      <label>Password</label>
-      <input type="password" name="password" required>
-
-      <div class="extras">
-        <label><input type="checkbox"> Remember Me</label>
-        <a href="#">Forgot Password?</a>
+  <div id="loginModal" class="modal">
+    <div class="modal-content" id="modalContent">
+      <span class="close">&times;</span>
+      <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'LoginForm', '#FFD700')">Log In</button>
+        <button class="tablinks" onclick="openTab(event, 'Register', '#FFD700')">Register</button>
+        <button class="tablinks" onclick="openTab(event, 'Business', '#FFD700')">Create a Business</button>
       </div>
+      <div class="modal-inner" id="modalInner">
+        <div id="LoginForm" class="tabcontent" style="display: block;">
+          <form>
+            <label>Username</label>
+            <input type="text" placeholder="Enter Username">
 
-      <button type="submit" class="login-btn">LOG IN</button>
-    </form>
+            <label>Password</label>
+            <input type="password" placeholder="Enter Password">
+
+            <div class="remember-forgot">
+              <label><input type="checkbox"> Remember Me</label>
+              <a href="#">Forgot Password?</a>
+            </div>
+
+            <button type="submit">Log In</button>
+          </form>
+        </div>
+
+        <div id="Register" class="tabcontent">
+          <form>
+            <label>First Name</label>
+            <input type="text" placeholder="First Name">
+
+            <label>Last Name</label>
+            <input type="text" placeholder="Last Name">
+
+            <label>Username</label>
+            <input type="text" placeholder="Username">
+
+            <label>Email</label>
+            <input type="text" placeholder="Email">
+
+            <label>Password</label>
+            <input type="password" placeholder="Password">
+
+            <button type="submit">Register</button>
+          </form>
+        </div>
+
+        <div id="Business" class="tabcontent">
+          <form>
+            <label>Business Name</label>
+            <input type="text" placeholder="Business Name">
+
+            <label>Email</label>
+            <input type="text" placeholder="Email">
+
+            <label>Password</label>
+            <input type="password" placeholder="Password">
+
+            <button type="submit">Create Business Account</button>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <script>
+    const modal = document.getElementById("loginModal");
+    const btn = document.getElementById("loginBtn");
+    const span = document.querySelector(".close");
+    const modalInner = document.getElementById("modalInner");
+
+    btn.onclick = () => modal.style.display = "block";
+    span.onclick = () => modal.style.display = "none";
+    window.onclick = (event) => {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+
+    function openTab(evt, tabName, bgColor) {
+      const tabcontent = document.getElementsByClassName("tabcontent");
+      for (let i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      const tablinks = document.getElementsByClassName("tablinks");
+      for (let i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+      }
+
+      document.getElementById(tabName).style.display = "block";
+      evt.currentTarget.classList.add("active");
+      modalInner.style.backgroundColor = bgColor;
+    }
+  </script>
+
 </body>
 </html>
