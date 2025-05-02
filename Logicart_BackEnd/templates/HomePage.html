@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deal O' The Day</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #d9d2c2;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Fixed Navigation Bar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #1a1a1a;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+      z-index: 999;
+    }
+
+    .logo {
+      background-color: #ffcc00;
+      padding: 10px 20px;
+      font-weight: bold;
+      border-radius: 4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+    }
+
+    .nav-links a {
+      background-color: #d9d2c2;
+      padding: 8px 16px;
+      color: #333;
+      text-decoration: none;
+      border: 1px solid #555;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      background-color: #bbb;
+    }
+
+    .search-box {
+      background-color: #d9d2c2;
+      padding: 8px 16px;
+      border-radius: 4px;
+      color: #333;
+      font-size: 14px;
+    }
+
+    /* Main content */
+    .content {
+      flex: 1;
+      padding-top: 80px; /* space for fixed navbar */
+      padding-bottom: 200px; /* space for fixed footer */
+    }
+
+    /* Combined Header Section */
+    .header {
+      background-color: #ffcc00;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    .header h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .header .main-image {
+      background-color: #e0e0e0;
+      margin: 0 auto;
+      padding: 40px;
+      width: 80%;
+      font-size: 18px;
+    }
+
+    /* Categories Section */
+    .categories {
+      display: flex;
+      justify-content: space-around;
+      margin: 20px;
+      flex-wrap: wrap;
+    }
+
+    .category {
+      background-color: #e0e0e0;
+      padding: 20px;
+      text-align: center;
+      margin: 10px;
+      width: 150px;
+      border-radius: 8px;
+    }
+
+    .category button {
+      margin-top: 10px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    /* Offers Section */
+    .offers-section {
+      display: flex;
+      justify-content: space-around;
+      margin: 40px 20px;
+      flex-wrap: wrap;
+    }
+
+    .offer-box {
+      background-color: #e0e0e0;
+      width: 40%;
+      height: 150px;
+      margin: 10px;
+      text-align: center;
+      padding: 40px 0;
+      border-radius: 8px;
+      font-size: 18px;
+    }
+
+    /* Fixed Footer */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #1a1a1a;
+      color: #ffcc00;
+      padding: 20px 50px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      font-size: 14px;
+      z-index: 998;
+    }
+
+    .footer-section {
+      margin: 10px;
+      text-align: center;
+    }
+
+    .footer-section h4 {
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    .footer-section p {
+      margin: 4px 0;
+      font-size: 12px;
+    }
+
+    .footer-bottom {
+      width: 100%;
+      text-align: center;
+      margin-top: 10px;
+      font-size: 12px;
+      color: #ccc;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <div class="logo">Logo</div>
+
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Products</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <div class="search-box">
+      Search
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content">
+
+    <!-- Combined Header and Main Image -->
+    <div class="header">
+      <h1>DEAL O' THE DAY</h1>
+
+      <!-- Inside the Yellow Box -->
+      <div class="main-image">
+        Computer Parts<br>IMAGE
+      </div>
+    </div>
+
+    <!-- Categories Section -->
+    <div class="categories">
+
+      <div class="category">
+        <div>Monitors</div>
+        <button>Button</button>
+      </div>
+
+      <div class="category">
+        <div>Peripherals</div>
+        <button>Button</button>
+      </div>
+
+      <div class="category">
+        <div>CPUs</div>
+        <button>Button</button>
+      </div>
+
+      <div class="category">
+        <div>GPUs</div>
+        <button>Button</button>
+      </div>
+
+      <div class="category">
+        <div>Misc.</div>
+        <button>Button</button>
+      </div>
+
+    </div>
+
+    <!-- Offers Section -->
+    <div class="offers-section">
+      <div class="offer-box">
+        Offers
+      </div>
+      <div class="offer-box">
+        Offers
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-section">
+      <h4>About Us</h4>
+      <p>Learn more about our mission and vision</p>
+      <h4>Location</h4>
+      <p>Find our offices and facilities near you</p>
+    </div>
+
+    <div class="footer-section">
+      <h4>Terms & Policies</h4>
+      <p>Read our terms of service and privacy policies</p>
+      <h4>Help/FAQs</h4>
+      <p>Get answers to frequently asked questions and support</p>
+    </div>
+
+    <div class="footer-section">
+      <h4>Contact Us</h4>
+      <p>Location</p>
+      <p>email@gmail.com</p>
+      <p>123456789</p>
+    </div>
+
+    <div class="footer-bottom">
+      Â© 2025 LogTech. All rights reserved.
+    </div>
+  </div>
+
+</body>
+</html>
