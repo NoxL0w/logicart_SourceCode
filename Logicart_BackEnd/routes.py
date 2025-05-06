@@ -1,11 +1,18 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask, render_template, request, redirect, url_for, jsonify, session
 from Logicart_BackEnd.databaseManagement import db_user
+import random
 
 app = Flask(__name__)
 
+def sessionKey_Gen():
+    sessionkey = random.randint(1000000000,9999999999)
+    return sessionkey
+
+app.secret_key = sessionKey_Gen()
+
 @app.route('/homepage')
 def dashboard():
-    return render_template('HomePage.html')
+    return render_template('Dashboard.html')
 
 @app.route('/')
 def home():
@@ -19,8 +26,9 @@ def login():
         password = request.form['password']
         user = db_user.authenticate_user(username, password)
         if user:
-            logStatus = True
-            return redirect(url_for("dashboard"))  # Later redirect to dashboard
+            session['user_id'] = user.id  # Store user ID in the session
+            session['username'] = user.username  # Store username for profile
+            return redirect(url_for("dashboard"))  # Redirect to dashboard or home
         return "Invalid credentials"
     return render_template('Dashboard.html')
 
@@ -38,3 +46,8 @@ def register_route():
         return redirect(url_for("login"))  # Redirect to login page after successful registration
     else:
         return "Registration failed", 400
+    
+@app.route('/logout')
+def logout():
+    session.clear()  # Clear the session to log the user out
+    return redirect(url_for('home'))

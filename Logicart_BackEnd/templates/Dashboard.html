@@ -259,9 +259,14 @@
     <div class="modal-content">
     <span class="close">&times;</span>
     <div class="tab">
-    <button class="tablinks active" onclick="openTab(event, 'LoginForm', '#FFD700')">Log In</button>
-    <button class="tablinks" onclick="openTab(event, 'Register', '#FFD700')">Register</button>
-    <button class="tablinks" onclick="openTab(event, 'Business', '#FFD700')">Create a Business</button>
+    <!-- Login Button or Profile Button -->
+    {% if is_logged_in %}
+        <button id="profileBtn" class="login-btn">{{ username }}</button>
+    {% else %}
+        <button id="loginBtn" class="login-btn">Login</button>
+    {% endif %}
+        <button class="tablinks" onclick="openTab(event, 'Register', '#FFD700')">Register</button>
+        <button class="tablinks" onclick="openTab(event, 'Business', '#FFD700')">Create a Business</button>
     </div>
     <div class="modal-inner" id="modalInner">
         <!--Loginflask-->
@@ -395,7 +400,16 @@
       evt.currentTarget.classList.add("active");
       modalInner.style.backgroundColor = bgColor;
     }
-   
+    document.getElementById("loginBtn")?.addEventListener("click", function() {
+    // Open login modal
+    document.getElementById("loginModal").style.display = "block";
+    });
+
+    document.getElementById("profileBtn")?.addEventListener("click", function() {
+    // Redirect to profile page or open profile modal
+    window.location.href = "/profile";  // Or show profile modal
+    });
+
   </script>
   </body>
   </html>
