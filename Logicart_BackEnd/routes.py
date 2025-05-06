@@ -22,7 +22,7 @@ def login():
             logStatus = True
             return redirect(url_for("dashboard"))  # Later redirect to dashboard
         return "Invalid credentials"
-    return render_template('LoginForm.html')
+    return render_template('Dashboard.html')
 
 @app.route("/register", methods=["POST"])
 def register_route():
