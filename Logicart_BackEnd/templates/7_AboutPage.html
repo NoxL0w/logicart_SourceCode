@@ -1,1 +1,200 @@
-temp
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About</title>
+  <style>
+    /* Position navbar */
+    .navbar {
+      display: flex;
+      justify-content: flex-end;
+      background-color: #f8f8f8;
+      padding: 10px;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropbtn {
+      background-color: transparent;
+      color: black;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;       /* Align the dropdown to the right */
+  left: auto;     /* Prevent it from going off-screen */
+  min-width: 160px;
+  background-color: white;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      padding: 12px 16px;
+      display: block;
+      text-decoration: none;
+      color: black;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+    /* Style for each section */
+    .section {
+      display: none;
+      padding: 30px;
+      margin: 20px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+    }
+
+.dropbtn:focus {
+  outline: none;
+}
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Dropdown -->
+  <nav class="navbar">
+    <div class="dropdown">
+      <button class="dropbtn">⚠️</button>
+      <div class="dropdown-content">
+        <a href="#" onclick="showSection('about')">About</a>
+        <a href="#" onclick="showSection('help')">Help</a>
+        <a href="#" onclick="showSection('return')">Return and Exchange</a>
+        <a href="#" onclick="showSection('contact')">Contact Us</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sections (Initially Hidden) -->
+  <div id="about" class="section">
+    <h2>About Us</h2>
+    <p>
+    Welcome to our website! We are dedicated to providing users with a smooth and efficient login and reservation experience.
+    Our goal is to make it easier for people to manage their time, access services, and connect with us effortlessly.
+  </p>
+  <p>
+    This platform was built by passionate developers who believe in user-friendly design, secure access, and excellent service.
+    Whether you're a student, IT Professionals, enthusiasts, or visitor, we’re here to help you navigate and make the most out of our tools.
+  </p>
+  </div>
+
+  <div id="help" class="section">
+    <h2>Help</h2>
+    <p>
+    Need assistance? We’re here to help! Below are some common issues and how to solve them:
+  </p>
+  <ul>
+    <li><strong>Can’t log in?</strong> – Make sure your username and password are correct. If you forgot your password, use the "Forgot Password" option or contact admin.</li>
+    <li><strong>Want to reserve a room?</strong> – Go to the reservation page, select your preferred date and time, then submit your request.</li>
+    <li><strong>Having technical issues?</strong> – Try refreshing the page. If problems continue, contact our support team at <em>support@example.com</em>.</li>
+  </ul>
+  <p>
+    For any other concerns, feel free to reach out to us through the Contact Us section.
+  </p>
+  </div>
+
+  <div id="return" class="section">
+  <h2>Returns, Exchange, and Warranty Policy</h2>
+  <p>
+    To benefit from Return, Exchange, and Warranty services, the original invoice is required.
+  </p>
+
+  <h3>Eligible Items:</h3>
+  <ul>
+    <li>All items are subject to Return and Exchange except software, unless a manufacturing defect is found.</li>
+    <li>Products must be in their original packaging and in unused condition.</li>
+  </ul>
+
+  <h3>Return and Exchange Period:</h3>
+  <ul>
+    <li>Returns: within <strong>3 days</strong> of purchase.</li>
+    <li>Exchanges: within <strong>7 days</strong> of purchase.</li>
+  </ul>
+
+  <h3>Conditions:</h3>
+  <ul>
+    <li>Promotional/free items must also be returned in original condition or their value will be deducted.</li>
+    <li>Refunds will be processed using the same payment method used at checkout.</li>
+    <li>Products purchased via partner vouchers or installment are refundable as store credit only.</li>
+    <li>Return and Exchange are valid only within the country of purchase.</li>
+    <li>Service and shipping charges are non-refundable.</li>
+  </ul>
+
+  <h3>Online Purchases:</h3>
+  <ul>
+    <li>Accepting the delivery confirms that the product box is sealed and in good condition.</li>
+    <li>Return/exchange window starts from the delivery date.</li>
+    <li>If no Logicart showroom is nearby, please contact us through our support line and a courier will be arranged for pickup.</li>
+    <li>International shipping fees, taxes, and duties are non-refundable unless the product has a manufacturing defect.</li>
+    <li>International orders are not eligible for return/exchange unless defective. Contact us at +639XXXXXXXX for assistance.</li>
+  </ul>
+
+  <h3>Immediate Replacement for Defective Items:</h3>
+  <ul>
+    <li>Logicart will replace any monitor, CPU, or peripheral with a manufacturing (non-software) defect within 3 days of purchase, provided the following:</li>
+    <ul>
+      <li>The device has no scratches or signs of misuse.</li>
+      <li>Original box, manuals, and accessories are returned in full.</li>
+      <li>A technical inspection may be required before replacement.</li>
+    </ul>
+  </ul>
+</div>
+
+
+  <div id="contact" class="section">
+    <h2>Contact Us</h2>
+    <p>You may reach out to us via:</p>
+  <ul>
+    <li><strong>Email:</strong> support@logicart.com</li>
+    <li><strong>Phone:</strong> +63 912 345 6789</li>
+  </ul>
+
+  <h3>Send Us a Message</h3>
+  <form onsubmit="sendMessage(event)">
+    <label for="name">Your Name:</label><br>
+    <input type="text" id="name" name="name" required style="width: 100%; padding: 8px;"><br><br>
+
+    <label for="email">Your Email:</label><br>
+    <input type="email" id="email" name="email" required style="width: 100%; padding: 8px;"><br><br>
+
+    <label for="message">Your Message:</label><br>
+    <textarea id="message" name="message" rows="4" required style="width: 100%; padding: 8px;"></textarea><br><br>
+
+    <button type="submit" style="padding: 10px 20px;">Send Message</button>
+  </form>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    function showSection(sectionId) {
+      // Hide all sections
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => section.style.display = 'none');
+
+      // Show the selected section
+      const selected = document.getElementById(sectionId);
+      if (selected) {
+        selected.style.display = 'block';
+        selected.scrollIntoView({ behavior: 'smooth' }); // optional scroll
+      }
+    }
+  </script>
+
+</body>
+</html>

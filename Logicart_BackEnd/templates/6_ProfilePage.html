@@ -1,1 +1,222 @@
-temp
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <style>
+   .login-btn {
+  position: fixed;         /* Makes it stick to a location */
+  top: 10px;               /* Distance from top of page */
+  right: 20px;             /* Distance from right side */
+  background-color: #FFD700;  /* Yellow background */
+  color: #000000;          /* Black text */
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 1001;           /* Make sure it's above most elements */
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  margin: 5% auto;
+  padding: 0;
+  width: 50%;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.modal-inner {
+  padding: 20px;
+  background-color: #FFD700;
+}
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #000;
+}
+
+.tab {
+  display: flex;
+}
+
+.tab button {
+  flex: 1;
+  padding: 12px;
+  background: #ddd;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.tab button.active {
+  background: #FFD700;
+  color: #000;
+  border-bottom: 4px solid #000;
+}
+
+.tabcontent {
+  display: none;
+  padding: 20px 0;
+}
+
+.tabcontent form {
+  display: flex;
+  flex-direction: column;
+}
+
+.tabcontent form input[type="text"],
+.tabcontent form input[type="password"] {
+  margin: 5px 0;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+}
+
+.tabcontent form button {
+  margin-top: 10px;
+  padding: 10px;
+  background: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+  </style>
+</head>
+<body>
+  <!-- Login Button -->
+<button id="loginBtn" class="login-btn">Login</button>
+
+<!-- Modal -->
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div class="tab">
+      <button class="tablinks active" onclick="openTab(event, 'LoginForm', '#FFD700')">Log In</button>
+      <button class="tablinks" onclick="openTab(event, 'Register', '#FFD700')">Register</button>
+      <button class="tablinks" onclick="openTab(event, 'Business', '#FFD700')">Create a Business</button>
+    </div>
+    <div class="modal-inner" id="modalInner">
+      <div id="LoginForm" class="tabcontent" style="display: block;">
+        <form>
+          <label>Username</label>
+          <input type="text" placeholder="Enter Username">
+          <label>Password</label>
+          <input type="password" placeholder="Enter Password">
+          <div class="remember-forgot">
+            <label><input type="checkbox"> Remember Me</label>
+            <a href="#">Forgot Password?</a>
+          </div>
+          <button type="submit">Log In</button>
+        </form>
+      </div>
+      <div id="Register" class="tabcontent">
+        <form>
+          <label>First Name</label>
+          <input type="text" placeholder="First Name">
+          <label>Last Name</label>
+          <input type="text" placeholder="Last Name">
+          <label>Username</label>
+          <input type="text" placeholder="Username">
+          <label>Email</label>
+          <input type="text" placeholder="Email">
+          <label>Password</label>
+          <input type="password" placeholder="Password">
+          <button type="submit">Register</button>
+        </form>
+      </div>
+      <div id="Business" class="tabcontent">
+        <form>
+          <label>Business Name</label>
+          <input type="text" placeholder="Business Name">
+          <label>Email</label>
+          <input type="text" placeholder="Email">
+          <label>Password</label>
+          <input type="password" placeholder="Password">
+          <button type="submit">Create Business Account</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Scripts -->
+<script>
+  const modal = document.getElementById("loginModal");
+  const btn = document.getElementById("loginBtn");
+  const span = document.querySelector(".close");
+  const modalInner = document.getElementById("modalInner");
+
+  btn.onclick = () => modal.style.display = "block";
+  span.onclick = () => modal.style.display = "none";
+
+  window.onclick = (event) => {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+
+  function openTab(evt, tabName, bgColor) {
+    const tabcontent = document.getElementsByClassName("tabcontent");
+    for (let i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+
+    const tablinks = document.getElementsByClassName("tablinks");
+    for (let i = 0; i < tablinks.length; i++) {
+      tablinks[i].classList.remove("active");
+    }
+
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.classList.add("active");
+    modalInner.style.backgroundColor = bgColor;
+  }
+
+  // Handle login form submission
+  document.querySelector("#LoginForm form").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    modal.style.display = "none";
+
+    const loginBtn = document.getElementById("loginBtn");
+    const profileImg = document.createElement("img");
+    profileImg.src = "https://cdn-icons-png.flaticon.com/128/847/847969.png";
+    profileImg.alt = "Profile";
+    profileImg.style.width = "40px";
+    profileImg.style.height = "40px";
+    profileImg.style.borderRadius = "50%";
+    profileImg.style.cursor = "pointer";
+
+    loginBtn.replaceWith(profileImg);
+  });
+</script>
+
+</body>
+</html>

@@ -1,1 +1,336 @@
-temp
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Compare</title>
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #e5ded4;
+      padding-bottom: 120px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background-color: #1a1a1a;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      
+    }
+
+    .logo {
+      font-size: 24px;
+    }
+
+    .search-bar {
+      flex-grow: 1;
+      margin: 0 20px;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 8px;
+      border-radius: 20px;
+      border: none;
+    }
+
+    .icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .compare-section {
+      background-color: #f4c900;
+      padding: 20px;
+      
+    }
+
+    .compare-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .compare-title {
+      font-size: 32px;
+      font-weight: bold;
+    }
+
+    .dropdown-button {
+      padding: 10px 15px;
+      background-color: #444;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+
+    .products-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .product-column {
+      background-color: white;
+      padding: 15px;
+      border-radius: 10px;
+      width: 250px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 500px;
+      position: relative;
+    }
+
+    .remove-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #ff4d4d;
+      border: none;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      line-height: 0;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 150px;
+      background-color: #ddd;
+      background-image: url('https://via.placeholder.com/150');
+      background-size: cover;
+      background-position: center;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .product-name {
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .product-specs, .product-score, .product-etc {
+      width: 100%;
+      text-align: left;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .extra-details {
+      display: none;
+      background-color: #f9f9f9;
+      border-top: 1px solid #ccc;
+      padding: 10px;
+      margin-top: auto;
+      width: 100%;
+      border-radius: 5px;
+    }
+
+    .add-product {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 250px;
+      height: 500px;
+      border: 2px dashed #555;
+      border-radius: 10px;
+      background-color: #fff;
+      cursor: pointer;
+    }
+
+    .add-product span {
+      font-size: 40px;
+    }
+
+    /* Sticky Footer */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #111;
+      color: #ffcc00;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      padding: 20px 0;
+      font-size: 0.8rem;
+      z-index: 998;
+    }
+
+    .footer-section {
+      margin: 10px;
+      text-align: center;
+    }
+
+    .footer-section h3 {
+      margin-bottom: 5px;
+      font-size: 1rem;
+    }
+
+    .footer-section p {
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">( ͡° ͜ʖ ͡°) LCP</div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+    </div>
+    <div class="icons">
+      <a href="ordertacking.html" title="Delivery Page">🚚</a>
+      <a href="shoppingcart.html" title="Cart Page">🛒</a>
+      <span>👤</span>
+    </div>
+  </header>
+
+  <!-- Compare Section *js-->
+  <section class="compare-section">
+    <div class="compare-header">
+      <div class="compare-title">Compare</div>
+      <button class="dropdown-button" onclick="toggleDetails()">Show Details ▼</button>
+    </div>
+
+    <div class="products-container" id="products-container">
+      <!-- Product 1 *js-->
+      <div class="product-column">
+        <button class="remove-button" onclick="removeProduct(this)">×</button>
+        <div class="product-image"></div>
+        <div class="product-name">Product 1 Name</div>
+        <div class="product-specs"><strong>Specs:</strong><br> 8GB RAM, 256GB SSD</div>
+        <div class="product-score"><strong>Score:</strong><br> 4.5/5</div>
+        <div class="product-etc"><strong>Etc:</strong><br> Warranty: 2 Years</div>
+        <div class="extra-details">
+          <strong>More Info:</strong>
+          <ul>
+            <li>Battery: 10 hrs</li>
+            <li>Weight: 1.2kg</li>
+            <li>Ports: USB-C, HDMI</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Product 2 *js-->
+      <div class="product-column">
+        <button class="remove-button" onclick="removeProduct(this)">×</button>
+        <div class="product-image"></div>
+        <div class="product-name">Product 2 Name</div>
+        <div class="product-specs"><strong>Specs:</strong><br> 16GB RAM, 512GB SSD</div>
+        <div class="product-score"><strong>Score:</strong><br> 4.8/5</div>
+        <div class="product-etc"><strong>Etc:</strong><br> Warranty: 3 Years</div>
+        <div class="extra-details">
+          <strong>More Info:</strong>
+          <ul>
+            <li>Battery: 8 hrs</li>
+            <li>Weight: 1.4kg</li>
+            <li>Ports: USB-A, HDMI</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Product 3 *js-->
+      <div class="product-column">
+        <button class="remove-button" onclick="removeProduct(this)">×</button>
+        <div class="product-image"></div>
+        <div class="product-name">Product 3 Name</div>
+        <div class="product-specs"><strong>Specs:</strong><br> 32GB RAM, 1TB SSD</div>
+        <div class="product-score"><strong>Score:</strong><br> 4.9/5</div>
+        <div class="product-etc"><strong>Etc:</strong><br> Warranty: 1 Year</div>
+        <div class="extra-details">
+          <strong>More Info:</strong>
+          <ul>
+            <li>Battery: 12 hrs</li>
+            <li>Weight: 1.1kg</li>
+            <li>Ports: USB-C x2</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Add Product *js-->
+      <div class="add-product" onclick="alert('Add Product Clicked')">
+        <span>+</span>
+        <div>Add Product</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer (Sticky) -->
+  <footer class="footer">
+    <div class="footer-section">
+      <h3>About Us</h3>
+      <p>Learn more about our mission and vision</p>
+    </div>
+    <div class="footer-section">
+      <h3>Terms & Policies</h3>
+      <p>Read our terms of service and privacy policies</p>
+    </div>
+    <div class="footer-section">
+      <h3>Location</h3>
+      <p>Find our offices and facilities near you</p>
+    </div>
+    <div class="footer-section">
+      <h3>Help/FAQs</h3>
+      <p>Get answers to frequently asked questions and support</p>
+    </div>
+    <div class="footer-section">
+      <h3>Contact Us</h3>
+      <p>Location</p>
+      <p>email@gmail.com</p>
+      <p>123456789</p>
+    </div>
+  </footer>
+
+  <script>
+    /* Toggles the extra details */
+    function toggleDetails() {
+      const extras = document.querySelectorAll('.extra-details');
+      const btn = document.querySelector('.dropdown-button');
+
+      // Creates an array based on elements displayed 'none' or ''
+      const currentlyHidden = Array.from(extras).some(el => el.style.display === 'none' || el.style.display === '');
+      
+      // shows or hides extra details based on currentlyHidden
+      extras.forEach(el => {
+        el.style.display = currentlyHidden ? 'block' : 'none';
+      });
+
+      // Changes the text of Details button
+      btn.textContent = currentlyHidden ? 'Hide Details ▲' : 'Show Details ▼';
+    }
+    
+    function removeProduct(button) {
+      button.closest('.product-column').remove();
+    }
+  </script>
+
+</body>
+</html>

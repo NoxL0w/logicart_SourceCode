@@ -1,1 +1,148 @@
-temp
+Can't create, edit, or upload … Not enough storage. Get 100 GB of storage for ₱119.00 ₱29.00/month for 2 months.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Track My Order</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #FFD700; /* Yellow */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 120px;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      padding: 1rem 2rem;
+      background-color: black;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .header button {
+      background-color: #FFD700;
+      color: black;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+
+    .timeline-container {
+      width: 80%;
+      max-width: 800px;
+      margin-top: 2rem;
+      background-color: #f8f1db; /* Beige */
+      border-radius: 10px;
+      padding: 1rem 2rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .timeline-item {
+      background-color: white;
+      border-left: 5px solid black;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 5px;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -9px;
+      top: 1rem;
+      width: 16px;
+      height: 16px;
+      background-color: black;
+      border-radius: 50%;
+    }
+
+    .time {
+      font-size: 14px;
+      color: gray;
+    }
+
+    .status {
+      font-weight: bold;
+      font-size: 18px;
+      color: black;
+    }
+
+    .location {
+      font-size: 16px;
+      margin-top: 0.3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Track My Order</h1>
+    <button onclick="location.href='home.html'">Back to Home</button>
+  </div>
+
+  <div class="timeline-container" id="timeline">
+    <!-- Dynamic items will be added here -->
+  </div>
+
+  <script>
+    const sampleUpdates = [
+      { status: "Package Delivered", location: "Your Address", time: "Just now" },
+      { status: "Out for Delivery", location: "Local Hub", time: "9:00 AM" },
+      { status: "Arrived at Sorting Center", location: "City Warehouse", time: "7:30 AM" },
+      { status: "Shipped", location: "Origin Facility", time: "Yesterday 5:00 PM" },
+      { status: "Order Confirmed", location: "Online Store", time: "Yesterday 2:00 PM" },
+    ];
+
+    function renderTimeline() {
+      const container = document.getElementById('timeline');
+      container.innerHTML = '';
+
+      sampleUpdates.forEach(update => {
+        const item = document.createElement('div');
+        item.className = 'timeline-item';
+        item.innerHTML = `
+          <div class="time">${update.time}</div>
+          <div class="status">${update.status}</div>
+          <div class="location">${update.location}</div>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    // Simulate updates
+    function simulateUpdate() {
+      const newTime = new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+      sampleUpdates.unshift({
+        status: "Driver scanned the package",
+        location: "Street 123, Delivery Zone",
+        time: newTime
+      });
+      if (sampleUpdates.length > 10) sampleUpdates.pop(); // Keep it tidy
+      renderTimeline();
+    }
+
+    // Initial render
+    renderTimeline();
+
+    // Simulate real-time update every 15 seconds
+    setInterval(simulateUpdate, 15000);
+  </script>
+
+</body>
+</html>
